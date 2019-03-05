@@ -6,9 +6,7 @@ import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.bpiatek.kalkulator.model.ExchangeRequestDTO;
 import pl.bpiatek.kalkulator.service.ExchangeService;
 
@@ -21,8 +19,8 @@ import javax.validation.Valid;
 /**
  * Created by Bartosz Piatek on 03/03/2019
  */
-@Slf4j
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 class MainController {
 
