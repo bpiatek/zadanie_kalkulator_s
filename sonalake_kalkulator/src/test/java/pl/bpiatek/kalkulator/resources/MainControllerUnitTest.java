@@ -25,12 +25,10 @@ public class MainControllerUnitTest {
   @Mock
   ExchangeService service;
 
-
   @Before
   public void setUp() {
     MockitoAnnotations.initMocks(this);
   }
-
 
   @Test
   public void shouldGetCorrectNettSalary() {
@@ -44,5 +42,4 @@ public class MainControllerUnitTest {
     //then
     assertThat(response.getNettSalary()).isEqualTo(new BigDecimal("2500.00"));
   }
-
 }

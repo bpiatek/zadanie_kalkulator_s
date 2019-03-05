@@ -19,6 +19,7 @@ public enum Country {
   }
 
   public static class Keys {
+
     private static final String POLAND = "PLN";
     private static final String UNITED_KINGDOM = "GBP";
     private static final String GERMANY = "EUR";

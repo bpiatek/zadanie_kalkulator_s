@@ -1,7 +1,8 @@
 package pl.bpiatek.kalkulator.resources;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,12 +37,13 @@ class MainController {
 
   @Value
   class NettEarnings {
+
     @JsonProperty("nettSalary")
     BigDecimal nettSalary;
   }
 
   private NettEarnings mapToNettEarnings(ExchangeRequestDTO request) {
     return new NettEarnings(exchangeService.finalSalary(request)
-                               .setScale(2, RoundingMode.HALF_UP));
+                                .setScale(2, RoundingMode.HALF_UP));
   }
 }

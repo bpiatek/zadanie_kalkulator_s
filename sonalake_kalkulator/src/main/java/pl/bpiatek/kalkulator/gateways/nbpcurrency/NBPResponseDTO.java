@@ -14,9 +14,10 @@ import javax.validation.constraints.NotEmpty;
 @Value
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NBPResponseDTO {
-    @NotEmpty
-    private String currency;
-    @NotEmpty
-    private String code;
-    private List<Rates> rates;
+
+  @NotEmpty
+  private String currency;
+  @NotEmpty
+  private String code;
+  private List<Rates> rates;
 }
