@@ -12,6 +12,7 @@ import javax.validation.constraints.PositiveOrZero;
  */
 @Value
 public class ExchangeRequestDTO {
+
   @NotNull
   @PositiveOrZero
   BigDecimal dailyWage;

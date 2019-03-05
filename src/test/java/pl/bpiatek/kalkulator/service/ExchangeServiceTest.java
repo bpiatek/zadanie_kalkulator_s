@@ -36,7 +36,7 @@ public class ExchangeServiceTest {
   private NBPGateway gateway;
 
   @Before
-  public void initMocks(){
+  public void initMocks() {
     MockitoAnnotations.initMocks(this);
   }
 
@@ -58,5 +58,4 @@ public class ExchangeServiceTest {
     //then
     assertThat(salary).isEqualTo(new BigDecimal("21750.00"));
   }
-
 }

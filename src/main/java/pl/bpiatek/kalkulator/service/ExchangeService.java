@@ -2,7 +2,9 @@ package pl.bpiatek.kalkulator.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.bpiatek.kalkulator.countries.*;
+import pl.bpiatek.kalkulator.countries.DE;
+import pl.bpiatek.kalkulator.countries.PL;
+import pl.bpiatek.kalkulator.countries.UK;
 import pl.bpiatek.kalkulator.gateways.nbpcurrency.CurrencyNotFoundException;
 import pl.bpiatek.kalkulator.gateways.nbpcurrency.NBPGateway;
 import pl.bpiatek.kalkulator.model.ExchangeRequestDTO;

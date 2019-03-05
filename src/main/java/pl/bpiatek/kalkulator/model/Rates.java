@@ -11,5 +11,6 @@ import java.math.BigDecimal;
 @Value
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Rates {
+
   BigDecimal mid;
 }
