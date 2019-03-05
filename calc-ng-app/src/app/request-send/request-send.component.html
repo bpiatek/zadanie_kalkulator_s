@@ -1,0 +1,30 @@
+<div class="container" style="padding-top: 300px;">
+  <div class="row">
+    <div class="col-md-6 offset-3">
+      <div class="page-header">
+        <h1 class="text-danger text-center text-uppercase">Enter data:</h1>
+      </div>
+      <div class="input-group">
+        <input type="number" [(ngModel)]="data.dailyWage" placeholder="daily wage" class="form-control">
+      </div>
+      <div class="input-group">
+        <select class="custom-select" [(ngModel)]="data.country">
+          <option value="" selected disabled>Choose country (currency)</option>
+          <option value="UK">Great Britain GBP</option>
+          <option value="DE">Germany EUR</option>
+          <option value="PL">Poland PLN</option>
+        </select>
+      </div>
+
+      <button (click)="postExchangeForm(data)" type="button" class="btn btn-primary btn-lg btn-block">
+        Submit
+      </button>
+      <br>
+      <hr>
+      <div *ngIf="localVar != null">
+        <h3 class="text-danger text-center">Your monthly nett earnings in PLN </h3>
+        <h2 class="text-center">{{localVar.nettSalary}} PLN</h2>
+      </div>
+    </div>
+  </div>
+</div>

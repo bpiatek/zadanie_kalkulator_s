@@ -6,9 +6,7 @@ import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.bpiatek.kalkulator.model.ExchangeRequestDTO;
 import pl.bpiatek.kalkulator.service.ExchangeService;
 
@@ -23,6 +21,7 @@ import javax.validation.Valid;
  */
 @Slf4j
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 class MainController {
 
@@ -30,6 +29,8 @@ class MainController {
 
   @PostMapping("api/exchange")
   public ResponseEntity<NettEarnings> calculateNett(@Valid @RequestBody ExchangeRequestDTO request) {
+    log.info("POST: /api/exchange");
+    log.info("WAGE: {}, COUNTRY: {}", request.getDailyWage(), request.getCountry());
     NettEarnings nettEarnings = mapToNettEarnings(request);
 
     return new ResponseEntity<>(nettEarnings, HttpStatus.OK);
