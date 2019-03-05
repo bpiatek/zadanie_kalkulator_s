@@ -4,7 +4,7 @@ import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.bpiatek.kalkulator.gateways.nbpcurrency.CurrencyApi;
+import pl.bpiatek.kalkulator.gateways.nbpcurrency.NBPApi;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -31,7 +31,7 @@ public class KalkulatorConfiguration {
   }
 
   @Bean
-  public CurrencyApi nbpApi() {
-    return retrofitNBP().create(CurrencyApi.class);
+  public NBPApi nbpApi() {
+    return retrofitNBP().create(NBPApi.class);
   }
 }

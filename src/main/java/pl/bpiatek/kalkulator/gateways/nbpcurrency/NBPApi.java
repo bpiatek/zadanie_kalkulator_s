@@ -7,7 +7,7 @@ import retrofit2.http.Path;
 /**
  * Created by Bartosz Piatek on 03/03/2019
  */
-public interface CurrencyApi {
+public interface NBPApi {
   @GET("rates/A/{currency}?format=json")
-  Call<CurrencyResponseDTO> getCurrencyFromNBP(@Path("currency") String currency);
+  Call<NBPResponseDTO> getCurrencyFromNBP(@Path("currency") String currency);
 }

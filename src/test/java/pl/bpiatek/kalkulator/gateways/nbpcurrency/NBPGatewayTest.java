@@ -19,9 +19,9 @@ import javax.ws.rs.core.Response;
  * Created by Bartosz Piatek on 03/03/2019
  */
 
-public class CurrencyGatewayTest {
+public class NBPGatewayTest {
 
-  private CurrencyGateway sut;
+  private NBPGateway sut;
 
   @Rule
   public WireMockRule wireMockRule = new WireMockRule(Options.DYNAMIC_PORT);
@@ -34,11 +34,11 @@ public class CurrencyGatewayTest {
         .client(new OkHttpClient())
         .build();
 
-    sut = new CurrencyGateway(retrofit.create(CurrencyApi.class));
+    sut = new NBPGateway(retrofit.create(NBPApi.class));
   }
 
   @Test
-  public void getCurrencyDetails() {
+  public void shouldGetCurrencyDetails() {
     //given
     String json = "{\"currency\": \"dolar amerykański\", \"code\": \"USD\"}";
     stubFor(
@@ -48,7 +48,7 @@ public class CurrencyGatewayTest {
             ));
 
     //when
-    CurrencyResponseDTO usd = sut.getCurrencyDetails("USD");
+    NBPResponseDTO usd = sut.getCurrencyDetails("USD");
 
     //then
     assertThat(usd.getCode()).isEqualTo("USD");

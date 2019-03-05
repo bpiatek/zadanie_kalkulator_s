@@ -17,34 +17,33 @@ import javax.inject.Inject;
 @Slf4j
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class CurrencyGateway {
+public class NBPGateway {
 
-  private final CurrencyApi api;
+  private final NBPApi api;
 
-  public CurrencyResponseDTO getCurrencyDetails(String currency) {
-    Response<CurrencyResponseDTO> response;
-    Call<CurrencyResponseDTO> currencyFromNBP = api.getCurrencyFromNBP(currency);
+  public NBPResponseDTO getCurrencyDetails(String currency) {
+    Response<NBPResponseDTO> response;
+    Call<NBPResponseDTO> currencyFromNBP = api.getCurrencyFromNBP(currency);
+
     try {
-       response = currencyFromNBP.execute();
+      response = currencyFromNBP.execute();
     } catch (IOException e) {
       String message = "Unable to send request to get: " + currency + " details";
       log.error(message, e);
       throw new CouldNotGetCurrencyDetailsException(message, HttpStatus.SERVICE_UNAVAILABLE.value());
     }
 
-    if(response.isSuccessful()) {
+    if (response.isSuccessful()) {
       return response.body();
     } else if (response.code() == HttpStatus.SERVICE_UNAVAILABLE.value()) {
       throw new CouldNotGetCurrencyDetailsException("Service unavailable.", HttpStatus.SERVICE_UNAVAILABLE.value());
     } else if (response.code() == HttpStatus.NOT_FOUND.value()) {
       throw new CurrencyNotFoundException("Currency: " + currency + " does not exist");
+    } else {
+      throw new CouldNotGetCurrencyDetailsException(
+          "Could not get '" + currency + "' from NBP",
+          HttpStatus.INTERNAL_SERVER_ERROR.value()
+      );
     }
-
-
-//    } else {
-//      throw new CouldNotGetCurrencyDetailsException("Could not get '" + currency + "' from NBP",
-//                                                    HttpStatus.INTERNAL_SERVER_ERROR.value());
-//    }
-    return null;
   }
 }
