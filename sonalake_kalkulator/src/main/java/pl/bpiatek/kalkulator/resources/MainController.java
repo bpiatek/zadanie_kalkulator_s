@@ -19,7 +19,6 @@ import javax.validation.Valid;
 /**
  * Created by Bartosz Piatek on 03/03/2019
  */
-@Slf4j
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
@@ -29,8 +28,6 @@ class MainController {
 
   @PostMapping("api/exchange")
   public ResponseEntity<NettEarnings> calculateNett(@Valid @RequestBody ExchangeRequestDTO request) {
-    log.info("POST: /api/exchange");
-    log.info("WAGE: {}, COUNTRY: {}", request.getDailyWage(), request.getCountry());
     NettEarnings nettEarnings = mapToNettEarnings(request);
 
     return new ResponseEntity<>(nettEarnings, HttpStatus.OK);
