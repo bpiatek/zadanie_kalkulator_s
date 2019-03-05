@@ -35,7 +35,7 @@ class MainController {
   }
 
   @Value
-  public static class NettEarnings {
+  class NettEarnings {
     @JsonProperty("nettSalary")
     BigDecimal nettSalary;
   }
