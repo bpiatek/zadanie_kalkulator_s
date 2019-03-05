@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import pl.bpiatek.kalkulator.countries.PL;
 import pl.bpiatek.kalkulator.countries.UK;
 import pl.bpiatek.kalkulator.gateways.nbpcurrency.NBPGateway;
 import pl.bpiatek.kalkulator.gateways.nbpcurrency.NBPResponseDTO;
@@ -32,9 +31,6 @@ public class ExchangeServiceTest {
 
   @Mock
   private UK uk;
-
-  @Mock
-  private PL pl;
 
   @Mock
   private NBPGateway gateway;
@@ -62,8 +58,5 @@ public class ExchangeServiceTest {
     //then
     assertThat(salary).isEqualTo(new BigDecimal("21750.00"));
   }
-
-
-
 
 }

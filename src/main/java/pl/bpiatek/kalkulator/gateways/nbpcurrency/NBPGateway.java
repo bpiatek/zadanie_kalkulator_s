@@ -10,6 +10,7 @@ import retrofit2.Response;
 import java.io.IOException;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 /**
  * Created by Bartosz Piatek on 03/03/2019
@@ -21,7 +22,7 @@ public class NBPGateway {
 
   private final NBPApi api;
 
-  public NBPResponseDTO getCurrencyDetails(String currency) {
+  public NBPResponseDTO getCurrencyDetails(@Valid String currency) {
     Response<NBPResponseDTO> response;
     Call<NBPResponseDTO> currencyFromNBP = api.getCurrencyFromNBP(currency);
 

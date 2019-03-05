@@ -1,7 +1,7 @@
 package pl.bpiatek.kalkulator.resources;
 
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,23 +23,24 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class MainController {
+class MainController {
 
   private final ExchangeService exchangeService;
 
   @PostMapping("api/exchange")
   public ResponseEntity<NettEarnings> calculateNett(@Valid @RequestBody ExchangeRequestDTO request) {
-    NettEarnings nettEarnings = mapToNettErnings(request);
+    NettEarnings nettEarnings = mapToNettEarnings(request);
 
     return new ResponseEntity<>(nettEarnings, HttpStatus.OK);
   }
 
   @Value
-  class NettEarnings {
-    private BigDecimal nett;
+  public static class NettEarnings {
+    @JsonProperty("nettSalary")
+    BigDecimal nettSalary;
   }
 
-  private NettEarnings mapToNettErnings(ExchangeRequestDTO request) {
+  private NettEarnings mapToNettEarnings(ExchangeRequestDTO request) {
     return new NettEarnings(exchangeService.finalSalary(request)
                                .setScale(2, RoundingMode.HALF_UP));
   }
