@@ -1,6 +1,6 @@
 # zadanie_kalkulator_s[![Build Status](https://travis-ci.org/bpiatek/zadanie_kalkulator_s.svg?branch=master)](https://travis-ci.org/bpiatek/zadanie_kalkulator_s)
 
-<h1>available at:  <a href="www.bpiatek.pl">www.bpiatek.pl</a></h1>
+<h1>available at:  <a href="http://bpiatek.pl" rel="nofollow">www.bpiatek.pl</a></h1>
 
 ![alt](http://i67.tinypic.com/34q6wdw.png)
 
