@@ -5,14 +5,14 @@
 ![alt](http://i67.tinypic.com/34q6wdw.png)
 
 
-##Functionality description
+<h2>Functionality description</h2>
 Application calculates monthly nett earnings of a person working on a contract. 
 User provides daily wage and selects the country and simple algorithm outputs result.
 
-##Algoriyhm details
+<h2>Algoriyhm details</h2>
 (daily wage * 22 days * country tax - fixed costs) * currency rate
 
-##Tech stack
+<h2>Tech stack</h2>
 Application's backend is written in JAVA with Spring Boot framework
 and Angular 6 for UI.
 
@@ -24,5 +24,5 @@ Backend
 - Mockito
 - RestAssured
 
-##Extra info
+<h2>Extra info</h2>
 I am not specifying how to build the application as it is standard procedure and you can play with it online.
