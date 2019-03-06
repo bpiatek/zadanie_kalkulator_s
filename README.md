@@ -19,6 +19,7 @@ and Angular 6 for UI.
 Backend
 - JAVA 8
 - SpringBoot 2
+- Retrofit 2
 - @Lombok
 - jUnit with AssertJ
 - Mockito
