@@ -2,14 +2,14 @@ package pl.bpiatek.kalkulator.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.bpiatek.kalkulator.countries.DE;
-import pl.bpiatek.kalkulator.countries.PL;
-import pl.bpiatek.kalkulator.countries.UK;
-import pl.bpiatek.kalkulator.gateways.nbpcurrency.CurrencyNotFoundException;
+import pl.bpiatek.kalkulator.countries.*;
 import pl.bpiatek.kalkulator.gateways.nbpcurrency.NBPGateway;
+import pl.bpiatek.kalkulator.model.Country;
 import pl.bpiatek.kalkulator.model.ExchangeRequestDTO;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -21,50 +21,25 @@ import javax.inject.Inject;
 public class ExchangeService {
 
   private final NBPGateway gateway;
-  private final UK uk;
-  private final DE de;
-  private final PL pl;
+  private Map<String, Calculable> map = new HashMap<>();
+
+  private void initializeMap() {
+    map.put("GBP", new UK());
+    map.put("PLN", new PL());
+    map.put("EUR", new DE());
+  }
 
   public BigDecimal finalSalary(ExchangeRequestDTO request) {
-    switch (request.getCountry()) {
-      case UK:
-        return calculate(
-            request.getDailyWage(),
-            uk.getTax(),
-            uk.getFixedCosts(),
-            getExchangeRate(request)
-        );
-      case DE:
-        return calculate(
-            request.getDailyWage(),
-            de.getTax(),
-            de.getFixedCosts(),
-            getExchangeRate(request)
-        );
-      case PL:
-        return calculate(
-            request.getDailyWage(),
-            pl.getTax(),
-            pl.getFixedCosts(),
-            new BigDecimal("1")
-        );
-      default:
-        throw new CurrencyNotFoundException("No currency for given country");
-    }
+    initializeMap();
+
+    return map.get(request.getCountry().getKey())
+        .calculate(request.getDailyWage(), getExchangeRate(request));
   }
 
   private BigDecimal getExchangeRate(ExchangeRequestDTO request) {
+    if (Country.PL == request.getCountry()) {
+      return new BigDecimal("1");
+    }
     return gateway.getCurrencyDetails(request.getCountry().getKey()).getRates().get(0).getMid();
-  }
-
-  private BigDecimal calculate(
-      BigDecimal dailyWage, BigDecimal tax,
-      BigDecimal fixedCosts, BigDecimal rate
-  ) {
-    return dailyWage
-        .multiply(new BigDecimal("22"))
-        .multiply(tax)
-        .subtract(fixedCosts)
-        .multiply(rate);
   }
 }
